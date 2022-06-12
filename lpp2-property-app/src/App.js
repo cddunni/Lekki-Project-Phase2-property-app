@@ -1,9 +1,10 @@
 import './App.css';
-import { Router,
+import { 
+  BrowserRouter as Router,
   Routes,
   Route, } from 'react-router-dom';
-import { routes } from "./router/routes";
-
+import { routes } from "./router/routes"
+import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
   return (
