@@ -12,7 +12,7 @@ const InputField = ({label, showLabel=false, inputStyle, type, placeholder, isRe
                 placeholder={placeholder}
                 required={isRequired}
                 value={value}
-                showLabel={showLabel}
+                // showLabel={showLabel}
               />
         </div>   
     )
