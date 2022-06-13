@@ -12,8 +12,7 @@ const AllProperties = () => {
     try {
       const response = await PropertyService.getAllProperty();
       if (response.code === 200) {
-        setResponse(response.data)
-        console.log ('WAGMI');
+        setResponse(response.data);
       }
     } catch (error) {
       console.log(error)
@@ -47,16 +46,14 @@ const AllProperties = () => {
         <div className='row g-4 mt-1 justify-content-center'>
         { 
           response.length ? response.map((item, index) => {
-            console.log(item.images[0])
           return (
-              <a href='/view-single-property' alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4' key={index}>
+              <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4 img-card' key={index}>
                   <div className='mx-auto'>
                     <h5 className='text-wrap'>{item.description}</h5>
                     <p>{item.bedroom} bedrooms {item.type}</p>
                     <p>Location: {item.address}</p>
-                    <p>Valid from: <span className='fw-bold'>{ new Date(item.validFrom).toLocaleDateString() }</span> to <span className='fw-bold'>{ new Date(item.validTo).toLocaleDateString() } </span></p>
+                    {/* <p>Valid from: <span className='fw-bold'>{ new Date(item.validFrom).toLocaleDateString() }</span> to <span className='fw-bold'>{ new Date(item.validTo).toLocaleDateString() } </span></p> */}
                   </div>
-                  {/* {item.location} */}
                   {/* {item.images.map((image) => {
                     return ( 
                       <img src={image.path} alt='property' className='w-25'/>)
