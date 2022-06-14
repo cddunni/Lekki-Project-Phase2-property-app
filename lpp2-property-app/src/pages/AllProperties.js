@@ -84,7 +84,7 @@ const AllProperties = () => {
         { 
           response.length ? response.map((item, index) => {
           return (
-              <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4 img-card' key={index}>
+              <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4 img-card overflow-hidden' key={index}>
                   <div className='mx-auto'>
                     <h5 className='text-wrap text-capitalize'>{item.description}</h5>
                     <p>{item.bedroom} bedrooms {item.type}</p>
