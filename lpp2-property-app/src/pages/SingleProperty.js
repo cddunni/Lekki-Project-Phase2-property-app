@@ -46,20 +46,20 @@ const SingleProperty = () => {
           <p className='mt-1'><span className='fw-bold'>VALID FROM:</span> { new Date(response.validFrom).toLocaleDateString() } <span className='fw-bold'> TO </span> { new Date(response.validTo).toLocaleDateString() }</p>
         </div>
       </div>
-      <div className='border row p-3 fs-5'>
-        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
-        <p>Bedroom: {response.bedroom}</p>
+      <div className='d-flex justify-content-evenly flex-wrap p-3 fs-5 mx-auto'>
+        <div className=' border text-center mt-3 p-4'>
+          <p>Bedroom: {response.bedroom}</p>
         </div>
-        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
+        <div className='border text-center mt-3 p-4'>
         <p>Sitting-Room: {response.sittingRoom}</p>
         </div>
-        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
+        <div className='border text-center mt-3 p-4'>
         <p>Kitchen: {response.kitchen}</p>
         </div>
-        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
+        <div className='border text-center mt-3 p-4'>
         <p>Bathroom: {response.bathroom}</p>
         </div>
-        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
+        <div className='border text-center mt-3 p-4'>
           <p>Toilet: {response.toilet}</p>
         </div>
       </div> 
