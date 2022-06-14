@@ -4,6 +4,7 @@ import {
   Routes,
   Route, } from 'react-router-dom';
 import { routes } from "./router/routes"
+import 'bootstrap/dist/js/bootstrap.bundle.min.js'
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {

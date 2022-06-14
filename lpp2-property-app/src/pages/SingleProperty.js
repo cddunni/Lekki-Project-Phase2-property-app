@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import PropertyService from '../services/property' 
-
+import { BiEdit , BiArrowBack} from 'react-icons/bi';
+import EditProperty from './EditProperty';
 
 const SingleProperty = () => {
   const [response, setResponse] = useState([]);
@@ -20,7 +21,15 @@ const SingleProperty = () => {
   useEffect(() => {fetchSingleProperty();});
   return (
     <div className='container py-5'>
-      <h2 className='text-center mb-3 text-capitalize'>{response.description}</h2>
+      <div className='d-flex justify-content-between'>
+        <a href='/' className='text-decoration-none text-success fs-5'>
+          <BiArrowBack className='me-1'/> Go Back 
+        </a>
+        <button className="btn btn-success" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
+          Edit Property <BiEdit className='fs-5'/>
+        </button>
+      </div>
+      <h2 className='text-center mb-3 text-capitalize mt-4'>{response.description}</h2>
       <div>
         {response?.images?.map((image) => {
           return ( 
@@ -29,7 +38,6 @@ const SingleProperty = () => {
       </div>
       <div className='row mb-5 fs-5 mt-4 text-capitalize'>
         <div className='col'>
-          {/* <p><span className='fw-bold'>DESCRIPTION: </span> {response.description}</p> */}
           <p><span className='fw-bold'>TYPE: </span> {response.type}</p>
           <p><span className='fw-bold'>LOCATION: </span> {response.address}</p>
         </div>
@@ -55,6 +63,7 @@ const SingleProperty = () => {
           <p>Toilet: {response.toilet}</p>
         </div>
       </div> 
+      <EditProperty/>
     </div>
   )
 }

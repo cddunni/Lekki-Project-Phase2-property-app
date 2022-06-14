@@ -13,11 +13,15 @@ const PropertyService = () => {
     const filterProperty = async (kitchen, sittingRoom) => {
         return api.get (`/lekki/property?kitchen=${kitchen}&sittingRoom=${sittingRoom}`)
     }
+    const updateProperty = async (propertyId, propertyDetails) => {
+        return api.patch(`/lekki/property/${propertyId}`, propertyDetails)
+    }
     return {
         getAllProperty,
         getSingleProperty,
         addProperty,
-        filterProperty
+        filterProperty,
+        updateProperty
     }
 }
 
