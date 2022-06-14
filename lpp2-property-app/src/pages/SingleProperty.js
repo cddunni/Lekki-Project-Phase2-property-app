@@ -17,7 +17,7 @@ const SingleProperty = () => {
       console.log(error)
     }
   }
-  useEffect(() => {fetchSingleProperty();}, []);
+  useEffect(() => {fetchSingleProperty();});
   return (
     <div className='container py-5'>
       <h2 className='text-center mb-3 text-capitalize'>{response.description}</h2>
