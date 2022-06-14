@@ -2,11 +2,13 @@ import React, {useState, useEffect} from 'react'
 import Button from '../components/Button'
 import InputField from '../components/Input'
 import UploadService from '../services/upload'
+import { useForm } from "react-hook-form";
 import toast, { Toaster } from 'react-hot-toast';
 import PropertyService from '../services/property' 
 import {BiArrowBack} from 'react-icons/bi'
 const AddProperty = () => {
   // eslint-disable-next-line no-unused-vars
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const [response, setResponse] = useState([]);
   const [formData, setFormData] = useState({
     address: '',
@@ -64,6 +66,9 @@ const AddProperty = () => {
       !formData.address || !formData.bathroom || !formData.bedroom || !formData.description || !formData.images || !formData.kitchen || !formData.propertyOwner || !formData.sittingRoom || !formData.type || !formData.validFrom || !formData.validTo || !formData.toilet
     )
   }
+  const onSubmit =(data) => {
+    console.log(data)
+  }
   useEffect(() => {console.log(formData)}, [formData])
   return (
     <div className='container p-5'>
@@ -71,7 +76,7 @@ const AddProperty = () => {
       <BiArrowBack className='me-1'/> Go Back 
     </a>
       <h4 className='text-center mt-3'>Add Property</h4>
-      <form onSubmit={addProperty}>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div className='row mt-3'>
           <InputField
             type="text"
@@ -80,6 +85,7 @@ const AddProperty = () => {
             name="address"
             value={formData.address}
             onChange={handleChange}
+            others={register("address")}
             showLabel
             /> 
           <InputField
@@ -89,6 +95,7 @@ const AddProperty = () => {
             name="type"
             onChange={handleChange}
             value={formData.typeProperty}
+            others={register("type")}
             showLabel
           />
         </div>
@@ -99,6 +106,7 @@ const AddProperty = () => {
             value={formData.bedroom}
             name="bedroom"
             onChange={handleChange}
+            others={register("bedroom")}
             label="Bedrooms"
             showLabel
           />
@@ -108,6 +116,7 @@ const AddProperty = () => {
             value={formData.sittingRoom}
             name="sittingRoom"
             onChange={handleChange}
+            others={register("sittingRoom")}
             label="Sitting Room"
             showLabel
           />
@@ -119,6 +128,7 @@ const AddProperty = () => {
             value={formData.kitchen}
             name="kitchen"
             onChange={handleChange}
+            others={register("kitchen")}
             label="Kitchen"
             showLabel
           />
@@ -128,6 +138,7 @@ const AddProperty = () => {
             value={formData.bathroom}
             name="bathroom"
             onChange={handleChange}
+            others={register("bathroom")}
             label="Bathroom"
             showLabel
           />
@@ -139,6 +150,7 @@ const AddProperty = () => {
             placeholder="Enter number of Toilets"
             onChange={handleChange}
             value={formData.toilet}
+            others={register("toilet")}
             label="Toilet"
             showLabel
             />
@@ -148,6 +160,7 @@ const AddProperty = () => {
             name="propertyOwner"
             value={formData.propertyOwner}
             onChange={handleChange}
+            others={register("propertyOwner")}
             placeholder="Enter Property Owner"
             showLabel
           />
@@ -159,12 +172,13 @@ const AddProperty = () => {
             value={formData.description}
             name="description"
             onChange={handleChange}
+            others={register("description")}
             label="Description"
             showLabel
             />
-            <div className='w-50'>
+            <div className='col-md-6 col-12 mt-3'>
               <label className="mb-2 text-sm font-medium">Upload Image</label>
-              <input type="file" className='form-control' onChange={(e) => uploadFile(e)} />
+              <input type="file" name="images" className='form-control' onChange={(e) => uploadFile(e)} {...register("images")} />
             </div>
         </div>
         <div className='row mt-3'>
@@ -174,6 +188,7 @@ const AddProperty = () => {
             name="validFrom"
             label="Valid From"
             placeholder=""
+            others={register("validFrom")}
             onChange={handleChange}
             showLabel
           />
@@ -181,6 +196,7 @@ const AddProperty = () => {
             type="date"
             name="validTo"
             value={formData.validTo}
+            others={register("validTo")}
             label="Valid To"
             onChange={handleChange}
             showLabel
@@ -190,7 +206,7 @@ const AddProperty = () => {
           <Button
             btnText="Submit"
             btnStyle="col-12 col-md-6"
-            onClick={addProperty}
+            // onClick={addProperty}
             isDisabled={disableButton()}
           />
         </div>
