@@ -20,6 +20,7 @@ const Navbar = () => {
                     <a href='/add-property'>
                         <Button
                             btnText="Add property"
+                            isDisabled={false}
                         />
                     </a>
                 </div>

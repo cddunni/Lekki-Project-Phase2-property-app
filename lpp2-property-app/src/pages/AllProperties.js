@@ -50,7 +50,7 @@ const AllProperties = () => {
           <h1 className='fw-bold'>Discover Your New Home</h1>
           <h5>explore your options.....</h5>
           <div className='d-flex justify-content-center align-items-center w-100 mt-4'>
-            <div className='d-flex'>
+            <div className='row'>
               <InputField
                   type="number"
                   placeholder="Filter by Kitchen.."
@@ -63,15 +63,15 @@ const AllProperties = () => {
                   type="number"
                   placeholder="Filter by SittingRoom..."
                   onChange={handleChange}
-                  inputStyle="ms-2"
                   name="sittingRoom"
                   value={formData.sittingRoom}
                 />
             </div>
               <Button
                 btnText="Search"
-                btnStyle="ms-3"
+                btnStyle="ms-3 mt-3"
                 onClick={filterProperty}
+                isDisabled={false}
             />
           </div>
         
