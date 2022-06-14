@@ -59,6 +59,11 @@ const AddProperty = () => {
     const {name, value} = e.target
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
   }
+  const disableButton = () => {
+    return (
+      !formData.address || !formData.bathroom || !formData.bedroom || !formData.description || !formData.images || !formData.kitchen || !formData.propertyOwner || !formData.sittingRoom || !formData.type || !formData.validFrom || !formData.validTo || !formData.toilet
+    )
+  }
   useEffect(() => {console.log(formData)}, [formData])
   return (
     <div className='container p-5'>
@@ -186,7 +191,7 @@ const AddProperty = () => {
             btnText="Submit"
             btnStyle="col-12 col-md-6"
             onClick={addProperty}
-            disabled={!formData}
+            isDisabled={disableButton()}
           />
         </div>
       </form>
