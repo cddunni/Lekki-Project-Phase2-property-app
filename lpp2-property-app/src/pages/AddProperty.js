@@ -2,11 +2,12 @@ import React, {useState, useEffect} from 'react'
 import Button from '../components/Button'
 import InputField from '../components/Input'
 import UploadService from '../services/upload'
+import toast, { Toaster } from 'react-hot-toast';
 import PropertyService from '../services/property' 
-
+import {BiArrowBack} from 'react-icons/bi'
 const AddProperty = () => {
+  // eslint-disable-next-line no-unused-vars
   const [response, setResponse] = useState([]);
-
   const [formData, setFormData] = useState({
     address: '',
     type: '',
@@ -46,12 +47,12 @@ const AddProperty = () => {
           toilet: Number(formData.toilet)
         }
       );
-      if (response === 200) {
-        setResponse(response.data);
-        console.log ('Yooo');
+      if (response.code === 201) {
+        toast.success(response.message);
       }
     } catch (error) {
       console.log(error)
+      toast.error(error.response.message);
     }
   }
   const handleChange = (e) => {
@@ -61,7 +62,10 @@ const AddProperty = () => {
   useEffect(() => {console.log(formData)}, [formData])
   return (
     <div className='container p-5'>
-      <h4 className='text-center'>Add Property</h4>
+    <a href='/' className='text-decoration-none text-success fs-5'>
+      <BiArrowBack className='me-1'/> Go Back 
+    </a>
+      <h4 className='text-center mt-3'>Add Property</h4>
       <form onSubmit={addProperty}>
         <div className='row mt-3'>
           <InputField
@@ -182,9 +186,11 @@ const AddProperty = () => {
             btnText="Submit"
             btnStyle="col-12 col-md-6"
             onClick={addProperty}
+            disabled={!formData}
           />
         </div>
       </form>
+      <Toaster />
     </div>
   )
 }
