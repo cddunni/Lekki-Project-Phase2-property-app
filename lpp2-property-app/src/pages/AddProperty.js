@@ -76,7 +76,7 @@ const AddProperty = () => {
       <BiArrowBack className='me-1'/> Go Back 
     </a>
       <h4 className='text-center mt-3'>Add Property</h4>
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form>
         <div className='row mt-3'>
           <InputField
             type="text"
@@ -206,7 +206,7 @@ const AddProperty = () => {
           <Button
             btnText="Submit"
             btnStyle="col-12 col-md-6"
-            // onClick={addProperty}
+            onClick={addProperty}
             isDisabled={disableButton()}
           />
         </div>
