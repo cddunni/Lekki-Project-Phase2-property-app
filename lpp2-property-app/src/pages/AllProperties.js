@@ -80,16 +80,16 @@ const AllProperties = () => {
       <div className='mt-5'>
         <h4 className='text-center'>List of Properties available</h4>
         <div className='container-fluid'>
-        <div className='row g-4 mt-1 justify-content-center'>
+        <div className='row g-4 mt-1 container justify-content-center'>
         { 
           response.length ? response.map((item, index) => {
           return (
-              <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4 img-card overflow-hidden' key={index}>
-                  <div className='mx-auto'>
-                    <h5 className='text-wrap text-capitalize'>{item.description}</h5>
-                    <p>{item.bedroom} bedrooms {item.type}</p>
-                    <p>Location: {item.address}</p>
-                  </div>
+              <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-md-4 img-card overflow-hidden' key={index}>
+                <div className='mx-auto'>
+                  <h5 className='text-wrap text-capitalize'>{item.description}</h5>
+                  <p>{item.bedroom} bedrooms {item.type}</p>
+                  <p>Location: {item.address}</p>
+                </div>
               </a>
           );
           }) : <h5 className='text-center fw-bold'>Loading.....</h5>
