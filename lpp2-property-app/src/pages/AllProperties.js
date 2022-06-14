@@ -1,13 +1,21 @@
 import React, { useState, useEffect } from 'react'
 import Button from '../components/Button'
 import InputField from '../components/Input'
+import toast, { Toaster } from 'react-hot-toast';
 import Navbar from '../components/Navbar'
 import PropertyService from '../services/property' 
 // import axios from 'axios'
 
 const AllProperties = () => {
   const [response, setResponse] = useState([]);
-
+  const [formData, setFormData] = useState({
+    kitchen: '',
+    sittingRoom: ''
+  })
+  const handleChange = (e) => {
+    const {name, value} = e.target
+    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }))
+  }
   const fetchAllProperty = async() => {
     try {
       const response = await PropertyService.getAllProperty();
@@ -16,6 +24,20 @@ const AllProperties = () => {
       }
     } catch (error) {
       console.log(error)
+    }
+  }
+  
+  const filterProperty = async() => {
+    // console.log('yesss')
+    try {
+      const response = await PropertyService.filterProperty(formData.kitchen, formData.sittingRoom)
+      if (response.code === 200) {
+        setResponse (response.data);
+        toast.success(response.message);
+      }
+    } catch (error) {
+      console.log(error)
+      toast.error(error.message);
     }
   }
   useEffect(() => {fetchAllProperty();}, []);
@@ -28,13 +50,28 @@ const AllProperties = () => {
           <h1 className='fw-bold'>Discover Your New Home</h1>
           <h5>explore your options.....</h5>
           <div className='d-flex justify-content-center align-items-center w-100 mt-4'>
-            <InputField
-              type="text"
-              placeholder="Search for property..."
-            />
-            <Button
-              btnText="Search"
-              btnStyle="ms-3"
+            <div className='d-flex'>
+              <InputField
+                  type="number"
+                  placeholder="Filter by Kitchen.."
+                  inputStyle=""
+                  name="kitchen"
+                  onChange={handleChange}
+                  value={formData.kitchen}
+                />
+                <InputField
+                  type="number"
+                  placeholder="Filter by SittingRoom..."
+                  onChange={handleChange}
+                  inputStyle="ms-2"
+                  name="sittingRoom"
+                  value={formData.sittingRoom}
+                />
+            </div>
+              <Button
+                btnText="Search"
+                btnStyle="ms-3"
+                onClick={filterProperty}
             />
           </div>
         
@@ -49,22 +86,18 @@ const AllProperties = () => {
           return (
               <a href={`/view-single-property/${item._id}`} alt="" className='text-decoration-none text-black col-xl-3 col-md-6 col-12 border p-5 me-4 img-card' key={index}>
                   <div className='mx-auto'>
-                    <h5 className='text-wrap'>{item.description}</h5>
+                    <h5 className='text-wrap text-capitalize'>{item.description}</h5>
                     <p>{item.bedroom} bedrooms {item.type}</p>
                     <p>Location: {item.address}</p>
-                    {/* <p>Valid from: <span className='fw-bold'>{ new Date(item.validFrom).toLocaleDateString() }</span> to <span className='fw-bold'>{ new Date(item.validTo).toLocaleDateString() } </span></p> */}
                   </div>
-                  {/* {item.images.map((image) => {
-                    return ( 
-                      <img src={image.path} alt='property' className='w-25'/>)
-                  })} */}
               </a>
           );
-          }) : <p className='text-center fw-bold'>Loading.....</p>
+          }) : <h5 className='text-center fw-bold'>Loading.....</h5>
         }
         </div>
         </div>
       </div>
+      <Toaster/>
     </div>
   )
 }

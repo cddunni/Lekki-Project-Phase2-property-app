@@ -10,10 +10,14 @@ const PropertyService = () => {
     const addProperty = async (propertyDetails) => {
         return api.post ('/lekki/property', propertyDetails)
     }
+    const filterProperty = async (kitchen, sittingRoom) => {
+        return api.get (`/lekki/property?kitchen=${kitchen}&sittingRoom=${sittingRoom}`)
+    }
     return {
         getAllProperty,
         getSingleProperty,
-        addProperty
+        addProperty,
+        filterProperty
     }
 }
 
