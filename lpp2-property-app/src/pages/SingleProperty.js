@@ -37,29 +37,29 @@ const SingleProperty = () => {
         })}
       </div>
       <div className='row mb-5 fs-5 mt-4 text-capitalize'>
-        <div className='col'>
+        <div className='col-md-6 col-12'>
           <p><span className='fw-bold'>TYPE: </span> {response.type}</p>
-          <p><span className='fw-bold'>LOCATION: </span> {response.address}</p>
+          <p className='mt-1'><span className='fw-bold'>LOCATION: </span> {response.address}</p>
         </div>
-        <div className='col'>
+        <div className='col-md-6'>
           <p><span className='fw-bold'>OWNED BY:</span> {response.propertyOwner}</p>
-          <p><span className='fw-bold'>VALID FROM:</span> { new Date(response.validFrom).toLocaleDateString() } <span className='fw-bold'> TO </span> { new Date(response.validTo).toLocaleDateString() }</p>
+          <p className='mt-1'><span className='fw-bold'>VALID FROM:</span> { new Date(response.validFrom).toLocaleDateString() } <span className='fw-bold'> TO </span> { new Date(response.validTo).toLocaleDateString() }</p>
         </div>
       </div>
       <div className='border row p-3 fs-5'>
-        <div className='col-2 border-end text-center'>
+        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
         <p>Bedroom: {response.bedroom}</p>
         </div>
-        <div className='col-2 border-end text-center'>
+        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
         <p>Sitting-Room: {response.sittingRoom}</p>
         </div>
-        <div className='col-2 border-end text-center'>
+        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
         <p>Kitchen: {response.kitchen}</p>
         </div>
-        <div className='col-2 border-end text-center'>
+        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
         <p>Bathroom: {response.bathroom}</p>
         </div>
-        <div className='col-2 border-end text-center'>
+        <div className='col-lg-2 col-md-3 col-6 border-end text-center'>
           <p>Toilet: {response.toilet}</p>
         </div>
       </div> 
